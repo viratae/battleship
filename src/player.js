@@ -3,7 +3,7 @@ import {
     Gameboard
 } from "./battleship.js"
 class Player {
-    constructor(isComputer = false) {
+    constructor(isPlayer = true) {
         this.gameboard = new Gameboard();
         this.ships = {
             carrier: new Ship(5),
@@ -12,7 +12,7 @@ class Player {
             submarine: new Ship(3),
             patrol: new Ship(2)
         }
-        this.isComputer = isComputer;
+        this.isPlayer = isPlayer;
         this.activeShip = this.ships.carrier;
         this.activeKey = "carrier"
     }
@@ -20,7 +20,7 @@ class Player {
         const keys = Object.keys(this.ships);
         const currentIndex = keys.indexOf(activeKey);
 
-        if (currentIndex === -1 || currentIndex === keys.length - 1) {
+        if(currentIndex === -1 || currentIndex === keys.length - 1) {
             this.activeShip = null;
         }
         this.activeKey = keys[currentIndex + 1];  

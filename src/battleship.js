@@ -1,11 +1,15 @@
 import {
     Player
 } from "./player.js"
+import {
+    renderer
+} from "./render.js"
 class Ship {
     constructor(length, hits = 0, sunk = false) {
         this.length = length;
         this.hits = hits;
         this.sunk = sunk;
+        this.coords = null;
     }
     hit() {
         this.hits++;
@@ -54,6 +58,7 @@ class Gameboard {
         // Mark it on grid
         if(isValid) {
             this.ships.push(ship);
+            ship.coords = shipCoords;
             shipCoords.forEach(coord => {
                 this.grid[coord[0]][coord[1]] = {Ship: ship, hit: false};
                 this.shipMarked.push([coord[0], coord[1]])
@@ -106,22 +111,9 @@ class Gameboard {
         return allDown;
     }
 }
-// const board = new Gameboard();
-// const testShip1 = new Ship(3);
-// const testShip2 = new Ship(2);
-
-// board.placeShip(testShip1, 0, 0, true);
-// board.placeShip(testShip2, 1, 0, false);
-// board.receiveAttack(5,5);
-// board.receiveAttack(5,5);
-// board.receiveAttack(0,0);
-// board.receiveAttack(1,0);
-// console.log(board.allSunk());
-// board.receiveAttack(2,0);
-// console.log(board.allSunk());
 const game = (function () {
-    const player = new Player(false);
-    const computer = new Player(true);
+    const player = new Player(true);
+    const computer = new Player(false);
     function getPlayer() {
         return player;
     }
@@ -133,10 +125,21 @@ const game = (function () {
         getComputer
     }
 })();
+function placeComputerShips() {
+    const computer = game.getComputer();
+    while(computer.activeShip) {
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
+        const orientation = Math.random() < 0.5;
+        if(computer.gameboard.placeShip(computer.activeShip, x, y, orientation)) {
+            computer.nextShip(computer.activeKey);
+        }
+    }
+}
+placeComputerShips();
 
 export {
     Ship,
     Gameboard,
     game
 }
-// Ideally render calls the gameboard placeShip and render just displays it
