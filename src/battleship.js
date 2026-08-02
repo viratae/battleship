@@ -84,20 +84,19 @@ class Gameboard {
         if(!coord) {
             this.grid[x][y] = {Ship: null, hit: true};
             this.playerMarked.push([x,y]);
-            console.log("Miss :(");
+            return "miss";
         }
         // If it has already been hit
         else if(coord.hit) {
-            console.log("Repeated hit");
             return false;
         }
         else if(coord.Ship && !coord.hit) {
-            console.log("YOU HIT A SHIP");
             coord.Ship.hit();
             this.grid[x][y].hit = true;
             if(coord.Ship.isSunk()) {
                 console.log("YOU SUNK A SHIP");
             }
+            return true;
         }
         console.log(this.grid);
     }

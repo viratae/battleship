@@ -7,7 +7,8 @@ body {
 }
 #startingPage, 
 #buildingPage, 
-#playingPage {
+#playingPage,
+#finalPage {
   height: 100vh;
   background-image:url(images/shipBackground.jpg);
   background-color: rgba(28, 29, 56, 0.495);
@@ -52,6 +53,9 @@ h1 {
 #playingPage {
   display: flex;
   flex-direction: row;
+}
+#finalPage h1 {
+  font-size: 3.3rem;
 }
 h3 {
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -172,7 +176,8 @@ form button:hover {
   background-color: #609dff8c;
   transition: all 0s;
 }
-.ship {
+#buildingGrid .ship, 
+#playerGrid .ship {
   border-color: rgb(0, 174, 255);
   background-color: #2d73edb9;
 }
@@ -192,7 +197,10 @@ form button:hover {
   background-color: black !important;
 }
 #enemyGrid .circle.hit {
-  background-color: rgb(214, 37, 37);
+  background-color: rgb(176, 24, 24);
+}
+#playerGrid .circle.hit {
+  background-color: rgb(13, 50, 164);
 }
 .hidden {
   display: none !important;
