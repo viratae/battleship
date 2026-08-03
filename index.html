@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b8659964f9.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="2c4a2468bf9ca72cf9a5.png">
+    <title>Battleship</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div id="startingPage" >
+        <h1>BATTLESHIP</h1>
+        <form id="playerForm">
+            <input type="text" id="playerName" placeholder="CAPTAIN NAME">
+            <div class="buttonContainer"><button type="submit">PREPARE FOR BATTLE</button></div>
+        </form>
+    </div>
+    <div id="buildingPage" class="hidden">
+        <h1>PLACE YOUR <span id="placeShipName">CARRIER</span></h1>
+        <button id="orientationButton"><i class="fa-solid fa-right-left" style="color: rgb(255, 255, 255);"></i></button>
+        <div id="buildingGrid">
+            
+        </div>
+    </div>
+    <div id="playingPage" class="hidden">
+        <div id="playerSide">
+            <h3>Your Waters</h3>
+            <div id="playerGrid">
+
+            </div>
+        </div>
+        <div id="enemySide">
+            <h3>Enemy Waters</h3>
+            <div id="enemyGrid">
+
+            </div>
+        </div>
+    </div>
+    <div id="finalPage" class="hidden">
+        <h1 id="resultText"></h1>
+    </div>
+</body>
+</html>
